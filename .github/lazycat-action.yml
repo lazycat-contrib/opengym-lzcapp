@@ -1,0 +1,52 @@
+version: 1
+
+project:
+  root: .
+  build_config: lzc-build.yml
+  package_file: package.yml
+  output: dist/opengym.lpk
+  target_arch: amd64
+
+update:
+  strategy: publish
+  allow_downgrade: false
+  version_source:
+    type: image
+    image: web
+
+build:
+  run_buildscript: false
+
+images:
+  # 版本源镜像：web（纯 SemVer tag，当前 1.3.10），mirror 交付
+  - id: web
+    target: service
+    service: web
+    source: ghcr.io/duartesantos8/opengym-web
+    channel: stable
+    sort: semver
+    tag_regex: '^\d+\.\d+\.\d+$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+  # API 镜像：与 web 同版本发布（纯 SemVer tag），mirror 交付
+  - id: api
+    target: service
+    service: api
+    source: ghcr.io/duartesantos8/opengym-api
+    channel: stable
+    sort: semver
+    tag_regex: '^\d+\.\d+\.\d+$'
+    delivery:
+      mode: mirror
+      require_digest_match: true
+
+stores:
+  official:
+    # Official store publication is intentionally disabled; publish only to MiaoMiao Store.
+    enabled: false
+  private:
+    enabled: true
+    skip_if_version_exists: true
+    name: openGym
+    summary: 自托管健身与体重追踪器：训练计划、组数记录、体重追踪

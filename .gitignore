@@ -1,0 +1,7 @@
+# Build artifacts
+dist/
+*.lpk
+
+# Editors
+.DS_Store
+*.swp
