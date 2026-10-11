@@ -8,8 +8,8 @@ application:
       backend: http://web:80/
 services:
   api:
-    # upstream: ghcr.io/duartesantos8/opengym-api:1.4.0
-    image: ghcr.1ms.run/duartesantos8/opengym-api:1.4.0
+    # upstream: ghcr.io/duartesantos8/opengym-api:1.4.1
+    image: ghcr.1ms.run/duartesantos8/opengym-api:1.4.1
     environment:
       - PORT=3000
       - DATA_DIR=/data
@@ -24,8 +24,8 @@ services:
     depends_on:
       - media
   web:
-    # upstream: ghcr.io/duartesantos8/opengym-web:1.4.0
-    image: ghcr.1ms.run/duartesantos8/opengym-web:1.4.0
+    # upstream: ghcr.io/duartesantos8/opengym-web:1.4.1
+    image: ghcr.1ms.run/duartesantos8/opengym-web:1.4.1
     depends_on:
       - api
       - media

@@ -1,5 +1,5 @@
 package: cloud.lazycat.app.opengym
-version: 1.4.0
+version: 1.4.1
 name: openGym
 description: "自托管健身与体重追踪器：训练计划、组数记录、体重追踪、passkey 登录"
 min_os_version: "1.5.0"
